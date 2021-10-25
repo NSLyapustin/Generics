@@ -93,6 +93,26 @@ class LinkedList<T> {
     }
 }
 
+extension LinkedList {
+    
+    // MARK: - Instance Properties
+
+    func total() -> T? where T: Numeric {
+        if let head = head {
+            var total: T = 0
+            var currentNode = head
+            total = total + currentNode.item
+            while currentNode.next != nil {
+                currentNode = currentNode.next!
+                total = total + currentNode.item
+            }
+            return total
+        } else {
+            return nil
+        }
+    }
+}
+
 let linkedList = LinkedList<Int>()
 linkedList.put(item: 1)
 linkedList.put(item: 2)
@@ -101,7 +121,7 @@ linkedList.put(item: 4)
 
 linkedList.printList()
 
-linkedList.remove(at: 3)
+linkedList.remove(at: 2)
 print("---------")
 linkedList.printList()
 
@@ -110,3 +130,4 @@ print(linkedList.count())
 print(String(describing: linkedList.tail()?.item))
 print(String(describing: linkedList.item(at: -1)?.item))
 print(String(describing: linkedList.item(at: 1)?.item))
+print(linkedList.total())
